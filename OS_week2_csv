@@ -1,0 +1,33 @@
+# parsing : analyzing a file content to correctly atructure data
+# csv: comma separated values
+
+# reading a csv file
+import csv
+f = open("csv_file.txt")
+csv_f = csv.reader(f)
+for row in csv_f:
+    name , phone, role = row
+    print("Name: {}, Phone: {}, Role: {}".format(name,phone, role))
+
+f.close()
+
+#generatinfg csv file
+hosts = [["work.local","192.168.25.46"],["web.cloud","10.2.5.6"]]
+with open('hosts.csv','w') as hosts_csv:
+    writer = csv.writer(hosts_csv)
+    writer.writerows(hosts)
+
+#reading & writing csv files with dictionaries
+with open('hosts.csv','w') as hosts_csv:
+    reader = csv.DictReader(hosts_csv) #converts each row into dict
+    for row in reader:
+        print(("{} has {} users"). format(row["name"], row["users"]))
+        #data can be accessed with keys
+
+users = [ {"name": "Sol", "username":"solm", "dept":"IT"},{"name": "Leo", "username":"leon", "dept":"CS"} ]
+keys = ["name","username", "dept"]
+with open("by_dept.csv",'w') as dept:
+    writer = csv.DictWriter(dept,filednames=keys)
+    writer.writerows(users)
+
+#created csv from a dictionary
