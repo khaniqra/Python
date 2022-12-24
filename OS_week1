@@ -1,0 +1,25 @@
+cat cmd shows content of linux 
+shebang tells os which cmd to use to execute the script
+#!/usr/bin/env python3
+nano : editor of linux
+chmod +x : makes the file executable
+./file_name.py : to execute
+
+# Own python module
+import / import as keyword
+
+#IDE
+eclipse/pycharm
+
+#benefits of automation
+scalability : when more work is added to a system the system can do whatever it needs to complete the work
+faster & more reliable
+centralizing mistakes : fixes error sfor one & all
+
+#pitfalls of automation
+time_to_automate < time_to_perform*amt_of_time_done
+Paretro Principle: 20% of teh system administration tasks that you perform are responsible for 80% of your work
+bit-rot: the process of software falling out of step with the environment
+
+shutil module -> disk_usage function (t = shutil.disk_usage gives used space)
+psutil module -> cpu_percent(0.1) function #econds as parameter
