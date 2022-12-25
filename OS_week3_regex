@@ -1,0 +1,80 @@
+# Regular expressions allow us to search a text for string matching a specific pattern
+# use .index() method to get index from a string
+# but if we want a no to be extracted and don't know where it wil end then index method can't be used
+# therefore we use RE module search function
+# www.regex101.com
+# Example:
+
+import re
+log = "July 31 07:51:48 my computer bad_process[12345]: ERROR"
+regex = r"\[(\d+)\]" #pattern of expression
+result = re.search(regex,log)
+print(result[1])
+
+# output : 12345
+
+# Basic Matching with grep
+# grep : tool to use regex
+# grep prints any line that matches the string
+
+# syntax: grep word_to_search path_of_file (in line)
+# its case-sensetive (for all cases use -i before the word)
+# grep l.rts path : matches every word with l & rts as its substring
+# grep ^fruit path : gives all words staring from fruit
+# grep cat$ path : gives words ending with cat
+
+#Simple matching
+
+import re 
+result = re.search(r"aza","plaza")
+print(result)
+#r represents raw string, aza is the substring to search and plaza is the string in which we have to search
+#  it returns the span(start & end index) of the subtring in the main string & none if no match is found
+
+Special char:
+^ : Start
+. : any substring in between
+re.search(r"aza","plaza", re.IGNORECASE) : to ignore case
+
+Wildcard char: ( . (dot) )
+
+result = re.search(r"[Aa]za","plaza") : to search for both cases
+result = re.search(r"[a-z]aza","plaza") : matches any substring with a letter from a- z(given range) followed by the given substring
+we can specify both at start or end of the string [a-zA-Z0-9] all are valid
+[^a-z] : excludes a-z to match
+result = re.search(r"pla|aza","plaza") : pla & aza both are option to match here we get pla as it occurs first
+to get al possible matches use findall  function
+
+#Repetition Qualifiers
+
+re.search(r"Py.*n","Python Programming")
+#it will match begining with Py till last n, output will be Python Programmin
+re.search(r"Py[a-z]*n","Python Programming")
+# as only char are involved output will be Python bcuz next space is not included in the search string
+
+grep has only . qaulifier
+egrep has + & ? also
++ : matches one or more char before the search string
+? : can provide optional parameter
+
+re.search(r"o+l+","goldfish") #output : ol
+re.search(r"o+l+","woolly") #output : ooll
+re.search(r"o+l+","boil") #output : None
+
+re.search(r"p?each","There were each of us") #output: each
+re.search(r"p?each","There were peaches") #output: peach
+
+#Escaping characters
+
+esacpe char :\ (will return the exact string not any substring(as . does))
+re.search(".com","welcome") #output: lcom
+re.search("\.com","welcome") #output: None (here . is not considered as special char)
+
+\w: matches any alphanumeric char (letters, nos, _)
+re.search("\w*","This is") #output: This
+re.search("\w*","This_is") #output: This_is
+
+\d: matches digits
+\s: matches whitespace char( space, tab, newline)
+\b: word boundaries
+
