@@ -78,3 +78,48 @@ re.search("\w*","This_is") #output: This_is
 \s: matches whitespace char( space, tab, newline)
 \b: word boundaries
 
+# Advance Regular expression
+
+# Capturing Groups
+
+we get the first match
+for all matches we need findall method
+re.search("^([\w \.-]*), ([\w \.-]*)$") search for names
+
+r"[a-zA-z]{5}" : string of 5 letters
+
+\b : matches word limit at beginning and end of pattern to indicate that we want full words
+r"\b[a-zA-z]{5}\b"
+
+r"\w{5,10}": matches word of length 5 or 10
+r"\w{5,}": word with min length 5 and above
+r"\w{,5}":word with max length 5 and below
+
+#Extracting a PID using regex
+
+regex = r"\[(\d+)\]" : pattern for pid eg: [12345]
+
+def extract_pod(log_line):
+    regex = r"\[(\d+)\]"
+    result = re.search(regex,log_line)
+    if result is None:
+        return ""
+    return result[1]
+
+#Splitting and Replacing
+
+#split method to split words from sentence
+re.split(r"[.?!]","One sentence. Another one? And the last one!")
+output: ['One sentence',' Another one',' And the last one','']
+
+re.split(r"([.?!])","One sentence. Another one? And the last one!")
+output: ['One sentence','.',' Another one','?',' And the last one','!','']
+
+#sub method to substitute 
+re.sub(r"[\w.%+-]+@[\w.-]+","[REACTED]", "Received an email for go95@my.example.com")
+op: Received an email for [REACTED]
+
+#we can also change the order of the words
+eg:
+re.sub(r"^([\w .-]*), ([\w .-]*)$",r'\2 \1', "lovelace Ada")
+op: 'Ada Lovelace'
